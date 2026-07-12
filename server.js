@@ -15,6 +15,8 @@ app.use(session({
     cookie: {secure: false} // Not recommended for production. Use Redis or MongoDB
 }));
 
+app.get("/ping", (req, res) => res.send("pong")); // for testing
+
 //TikTok OAuth endpoints
 const TIKTOK_AUTH_URL = "https://www.tiktok.com/auth/authorize/";
 const TIKTOK_TOKEN_URL = "https://open-api.tiktokglobal.com/oauth/access_token/";
