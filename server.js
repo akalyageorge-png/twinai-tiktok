@@ -11,7 +11,8 @@ app.use(express.static("public"));
 app.use(session({
     secret: 'twinsecret',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {secure: false} // Not recommended for production. Use Redis or MongoDB
 }));
 
 //TikTok OAuth endpoints
