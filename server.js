@@ -18,13 +18,14 @@ app.use(session({
 app.get("/ping", (req, res) => res.send("pong")); // for testing
 
 //TikTok OAuth endpoints
-const TIKTOK_AUTH_URL = "https://www.tiktok.com/auth/authorize/";
+const TIKTOK_AUTH_URL = "https://www.tiktok.com/v2/auth/authorize/";
 const TIKTOK_TOKEN_URL = "https://open-api.tiktokglobal.com/oauth/access_token/";
 
-app.get('/auth/tiktok',(req,res)=>{
-    const redirectUri=process.env.CALLBACK_URL;
-    const url=`${TIKTOK_AUTH_URL}?client_key=${process.env.TIKTOK_CLIENT_ID}&response_type=code&scope=user.info.basic&redirectUri=${redirectUri}&state=12345`;
 
+app.get('/auth/tiktok',(req,res)=>{
+//    console.log(process.env.TIKTOK_CLIENT_KEY)
+    const redirectUri=process.env.CALLBACK_URL;
+    const url=`${TIKTOK_AUTH_URL}?client_key=${process.env.TIKTOK_CLIENT_KEY}&response_type=code&scope=user.info.basic&redirect_uri=${encodeURIComponent(redirectUri)}&state=12345`;
     res.redirect(url);
 });
 
